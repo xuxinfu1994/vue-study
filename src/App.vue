@@ -1,17 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
+    <Dialog 
+      :isShow="showDilog" 
+      @closeDialogHandle="closeDia">
+    </Dialog>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dialog from './components/Dialog.vue';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      showDilog: true,
+    }
+  },
   components: {
-    HelloWorld
+    Dialog
+  },
+  methods: {
+    closeDia: function(bname){
+
+      if( typeof bname == 'function' ) {
+        bname();
+      }
+
+      this.showDilog = false;
+    }
   }
 }
 </script>
@@ -25,4 +44,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
